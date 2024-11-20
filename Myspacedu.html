@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore the Solar System</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow: auto; 
+    }
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('mmmm.jpg') no-repeat center center fixed;
+      background-size: cover;
+      z-index: -1;
+      animation: moveBackground 60s linear infinite;
+    }
+
+    @keyframes moveBackground {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
+    }
+
+    .solar-system-overview
+    {
+      position: relative;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 2rem 2rem;
+      text-align: center;
+      animation: float 6s ease-in-out infinite;
+
+
+    }
+    
+    .header {
+      position: relative;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 6rem 2rem;
+      text-align: center;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .header h1 {
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .header p {
+      font-size: 2rem;
+      max-width: 800px;
+      margin: auto;
+      text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.6);
+      animation: float 8s ease-in-out infinite alternate;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    .planet-icon {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @keyframes orbit {
+      0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+    }
+
+    .planet-icon.mercury { background-image: url('a.png'); top: 10%; left: 20%; animation: orbit 15s linear infinite; }
+    .planet-icon.venus { background-image: url('aa.png'); top: 10%; left: 50%; animation: orbit 20s linear infinite; }
+    .planet-icon.earth { background-image: url('aaa.png'); top: 50%; left: 20%; animation: orbit 25s linear infinite; }
+    .planet-icon.mars { background-image: url('pt.png'); top: 50%; left: 50%; animation: orbit 30s linear infinite; }
+    .planet-icon.p { background-image: url('kl.png'); top: 50%; left: 50%; animation: orbit 30s linear infinite; }
+
+    .solar-system-overview, .planets, .moons, .solar-system-objects {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      margin: 2rem auto;
+      border-radius: 10px;
+      max-width: 1200px;
+    }
+    .moons .moon img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+}
+
+    .solar-system-overview h2, .planets h2, .moons h2, .solar-system-objects h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #f0f0f0;
+    }
+
+    .solar-system-overview p, .planets p, .moons p, .solar-system-objects p {
+      font-size: 1.2rem;
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .planet {
+      margin-bottom: 3rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .planet img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .planet img:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    .planet .details {
+      font-size: 1rem;
+      color: #eee;
+      margin-top: 0.5rem;
+    }
+
+    .moons .moon, .solar-system-objects article {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .moons .moon:hover, .solar-system-objects article:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .moons .moon h3, .solar-system-objects h3 {
+      font-size: 2rem;
+      color: #f0f0f0;
+    }
+
+    .moons .moon p, .solar-system-objects p {
+      font-size: 1.1rem;
+      color: #ddd;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="background"></div>
+  <header class="header">
+    <img src="atroo.png" alt="The Moon" style="width: 350px; float: top;" />
+    <h1>Welcome to Our Solar System</h1>
+
+    <p>Discover the wonders of the Sun, planets, moons, and everything else that makes our solar system extraordinary.</p>
+    <div class="planet-icon mercury"></div>
+    <div class="planet-icon venus"></div>
+    <div class="planet-icon earth"></div>
+    <div class="planet-icon mars"></div>
+    <br>
+    <br>
+    <br>
+  </header>
+  <section class="solar-system-overview">
+    <h2>About Our Solar System</h2>
+    <p>Our solar system is home to the Sun, eight planets, dozens of moons, countless asteroids, comets, and other celestial objects. Located in the Milky Way galaxy, it's the only place we know of that harbors life – on Earth.</p>
+
+  </section>
+
+  <section class="planets">
+    <h2>Planets of the Solar System</h2>
+    <div class="row">
+      <article class="planet col-md-4">
+        <a href="https://solarsystem.nasa.gov/planets/mercury/overview/" target="_blank">
+          <img src="m.jpeg" alt="Mercury" />
+        </a>
+        <h3>Mercury</h3>
+        <p>Mercury is the closest planet to the Sun and the smallest in our solar system. It has no atmosphere, and its surface temperatures vary drastically between day and night.</p>
+        <div class="details">
+          <p>Distance from Sun: 57.9 million km</p>
+          <p>Orbital Period: 88 Earth days</p>
+          <p>Moons: None</p>
+        </div>
+      </article>
+
+      <article class="planet col-md-4">
+        <a href="https://solarsystem.nasa.gov/planets/venus/overview/" target="_blank">
+          <img src="v.jpeg" alt="Venus" />
+        </a>
+        <h3>Venus</h3>
+        <p>Venus is the second planet from the Sun and is known for its thick, toxic atmosphere. Its surface is hotter than any other planet in the solar system due to the greenhouse effect.</p>
+        <div class="details">
+          <p>Distance from Sun: 108.2 million km</p>
+          <p>Orbital Period: 225 Earth days</p>
+          <p>Moons: None</p>
+        </div>
+      </article>
+
+      <article class="planet col-md-4">
+        <a href="https://solarsystem.nasa.gov/planets/earth/overview/" target="_blank">
+          <img src="aaa.png" alt="Earth" />
+        </a>
+        <h3>Earth</h3>
+        <p>Earth is the third planet from the Sun and the only one known to support life. It has a diverse climate, landscapes, and ecosystems.</p>
+        <div class="details">
+          <p>Distance from Sun: 149.6 million km</p>
+          <p>Orbital Period: 365.25 Earth days</p>
+          <p>Moons: 1 (the Moon)</p>
+        </div>
+      </article>
+
+      <article class="planet col-md-4">
+        <a href="https://solarsystem.nasa.gov/planets/mars/overview/" target="_blank">
+          <img src="m.jpeg" alt="Mars" />
+        </a>
+        <h3>Mars</h3>
+        <p>Mars is known as the Red Planet due to its reddish appearance caused by iron oxide on its surface. It has the largest volcano and canyon in the solar system.</p>
+        <div class="details">
+          <p>Distance from Sun: 227.9 million km</p>
+          <p>Orbital Period: 687 Earth days</p>
+          <p>Moons: 2 (Phobos and Deimos)</p>
+        </div>
+      </article>
+ <article class="planet col-md-4">
+  <a href="https://solarsystem.nasa.gov/planets/jupiter/overview/" target="_blank">
+    <img src="jupiter.jpeg" alt="Jupiter" />
+  </a>
+  <h3>Jupiter</h3>
+  <p>Jupiter is the largest planet in our solar system, known for its Great Red Spot and powerful magnetic field. It has 79 known moons.</p>
+  <div class="details">
+    <p>Distance from Sun: 778.5 million km</p>
+    <p>Orbital Period: 11.9 Earth years</p>
+    <p>Moons: 79</p>
+  </div>
+</article>
+
+<article class="planet col-md-4">
+  <a href="https://solarsystem.nasa.gov/planets/saturn/overview/" target="_blank">
+    <img src="s.jpeg" alt="Saturn" />
+  </a>
+  <h3>Saturn</h3>
+  <p>Saturn is famous for its stunning ring system, which is the most developed among all the planets. It is the second-largest planet in our solar system.</p>
+  <div class="details">
+    <p>Distance from Sun: 1.4 billion km</p>
+    <p>Orbital Period: 29.5 Earth years</p>
+    <p>Moons: 83 (including Titan, Rhea)</p>
+  </div>
+</article>
+
+<article class="planet col-md-4">
+  <a href="https://solarsystem.nasa.gov/planets/uranus/overview/" target="_blank">
+    <img src="un.jpeg" alt="Uranus" />
+  </a>
+  <h3>Uranus</h3>
+  <p>Uranus is an ice giant with a unique tilt, which causes extreme seasons. Its atmosphere is mostly hydrogen and helium, with traces of methane giving it a blue color.</p>
+  <div class="details">
+    <p>Distance from Sun: 2.9 billion km</p>
+    <p>Orbital Period: 84 Earth years</p>
+    <p>Moons: 27</p>
+  </div>
+</article>
+
+<article class="planet col-md-4">
+  <a href="https://solarsystem.nasa.gov/planets/neptune/overview/" target="_blank">
+    <img src="aa.png" alt="Neptune" />
+  </a>
+  <h3>Neptune</h3>
+  <p>Neptune is known for its deep blue color and strong winds. It's the eighth planet from the Sun and has a very dynamic weather system.</p>
+  <div class="details">
+    <p>Distance from Sun: 4.5 billion km</p>
+    <p>Orbital Period: 165 Earth years</p>
+    <p>Moons: 14</p>
+  </div>
+</article>
+</div>
+</section>
+<section class="moons">
+  <h2>Moons of the Solar System</h2>
+  <div class="row">
+    <!-- Earth's Moon -->
+    <article class="moon earth-moon">
+      <img src="moon.png" alt="The Moon" />
+      <h3>The Moon (Earth)</h3>
+      <p>The Moon is Earth's only natural satellite and the fifth-largest moon in the solar system. Its phases have been integral to human culture for millennia.</p>
+    </article>
+
+    <!-- Titan (Saturn) -->
+    <article class="moon titan">
+      <img src="titan satur,.png" alt="The Moon" />
+      <h3>Titan (Saturn)</h3>
+      <p>Titan is Saturn's largest moon and has a thick atmosphere and liquid methane lakes. It's one of the most Earth-like worlds in the solar system, despite its frigid temperatures.</p>
+    </article>
+
+    <!-- Europa (Jupiter) -->
+    <article class="moon europa">
+      <img src="jupi.png" alt="The Moon" />
+      <h3>Europa (Jupiter)</h3>
+      <p>Europa, one of Jupiter's Galilean moons, is covered in ice. Scientists believe there's a vast ocean beneath its frozen surface, making it a prime candidate for finding extraterrestrial life.</p>
+    </article>
+  </section>
+
+  <section class="solar-system-objects">
+    <h2>Other Celestial Objects</h2>
+
+    <!-- Asteroid Belt -->
+    <article class="asteroid-belt">
+      <h3>The Asteroid Belt</h3>
+      <p>The asteroid belt lies between Mars and Jupiter and contains thousands of rocky bodies. Ceres, the largest object here, is considered a dwarf planet.</p>
+    </article>
+
+    <!-- Comets -->
+    <article class="comets">
+      <h3>Comets</h3>
+      <p>Comets are icy bodies that originate from the outer solar system. When they approach the Sun, their ice turns to gas, forming a bright tail visible from Earth.</p>
+    </article>
+
+    <!-- Kuiper Belt -->
+    <article class="kuiper-belt">
+      <h3>The Kuiper Belt</h3>
+      <p>The Kuiper Belt is a region beyond Neptune filled with icy bodies and dwarf planets, including Pluto. It's similar to the asteroid belt but far larger and more distant.</p>
+    </article>
+    <img src="as.png" alt="The Moon" />
+
+
+  </section>
+  <footer class="footer">
+    <p>&copy; 2024 Explore the Solar System. All rights reserved.</p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
